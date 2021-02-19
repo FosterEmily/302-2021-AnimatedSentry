@@ -32,17 +32,13 @@ public static class AnimMath
 
     public static Quaternion Lerp(Quaternion min, Quaternion max, float p, bool allowExtrapolation = true)
     {
-        Quaternion rot = Quaternion.identity;
+        if (!allowExtrapolation)
+        {
+            if (p < 0) return min;
+            if (p > 1) return max;
 
-        rot.x = Lerp(min.x, max.x, p, allowExtrapolation);
-        rot.y = Lerp(min.y, max.y, p, allowExtrapolation);
-        rot.z = Lerp(min.z, max.z, p, allowExtrapolation);
-        rot.w = Lerp(min.w, max.w, p, allowExtrapolation);
-
-
-
-        return rot;
-
+        }
+        return Quaternion.Lerp(min, max, p);
 
     }
 

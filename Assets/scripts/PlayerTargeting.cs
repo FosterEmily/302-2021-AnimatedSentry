@@ -10,19 +10,17 @@ public class PlayerTargeting : MonoBehaviour
     public Transform target;
 
     public bool wantsToTarget = false;
+    public float visionDis = 10;
+    public float visionAngle = 45;
 
     private List<ShootAbleThing> potentialTargets = new List<ShootAbleThing>();
 
     float coolDownScan = 0;
     float coolDownTarget = 0;
 
-    public float visionDis = 10;
-
-    
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
@@ -30,13 +28,31 @@ public class PlayerTargeting : MonoBehaviour
     {
         wantsToTarget = Input.GetButton("Fire2");
 
-        coolDownScan -= Time.deltaTime;
-        if (coolDownScan <= 0) ScanForTargets();
-        coolDownTarget -= Time.deltaTime;
-        if (coolDownTarget <= 0) PickATargety();
+        if (!wantsToTarget) target = null;
 
+        coolDownScan -= Time.deltaTime;
+        if (coolDownScan <= 0 || (target == null && wantsToTarget)) ScanForTargets();
+        coolDownTarget -= Time.deltaTime;
+        if (coolDownTarget <= 0) PickATarget();
+
+        if (target && !CanSeeThing(target)) target = null;
+       
     }
 
+    private bool CanSeeThing(Transform thing)
+    {
+        if (!thing) return false;
+
+        Vector3 vToThing = thing.position - transform.position;
+
+        if (vToThing.sqrMagnitude > visionDis*visionDis) return false; //to far away to see
+
+        if (Vector3.Angle(transform.forward, vToThing) > visionAngle) return false; // out of the cone of vision
+
+        return true;
+
+
+    }
     private void ScanForTargets()
     {
 
@@ -48,29 +64,21 @@ public class PlayerTargeting : MonoBehaviour
 
         foreach(ShootAbleThing thing in things)
         {
-
-           Vector3 disToThing = thing.transform.position - transform.position;
-
-           if( disToThing.sqrMagnitude < visionDis * visionDis)
-            {
-
-                if (Vector3.Angle(transform.forward, disToThing) < 45)
-                {
-
-                    potentialTargets.Add(thing);
-
-                }
-
+            if (CanSeeThing(thing.transform))
+            { 
+             potentialTargets.Add(thing);
             }
-
         }
-
     }
 
-    void PickATargety()
+
+
+    void PickATarget()
     {
-        coolDownTarget = 5;
-        if (target) return;// we already have a target
+        coolDownTarget = .25f;
+        //if (target) return;// we already have a target
+
+        target = null;
 
         float closetDisSoFar = 0;
 
@@ -84,6 +92,7 @@ public class PlayerTargeting : MonoBehaviour
                 target = pt.transform;
                 closetDisSoFar = dd;
             }
+
 
         }
 

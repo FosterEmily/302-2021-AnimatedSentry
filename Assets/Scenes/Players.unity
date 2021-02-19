@@ -260,7 +260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a5a9d0fb27460a449e9448f8f62cda9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 1826016739}
+  moveScript: {fileID: 1826016739}
   cameraSenX: 5
   cameraSenY: -5
 --- !u!4 &511866106
@@ -651,7 +651,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1597209256}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.11, z: 0}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
   m_LocalScale: {x: 100, y: 1, z: 100}
   m_Children: []
   m_Father: {fileID: 0}
@@ -731,6 +731,10 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 315052056}
+    - target: {fileID: 7670687409360750991, guid: 84312732b4fd45e4e8be6e5663b89202, type: 3}
+      propertyPath: visionAngle
+      value: 70
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2231287734055421875, guid: 84312732b4fd45e4e8be6e5663b89202, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 84312732b4fd45e4e8be6e5663b89202, type: 3}
