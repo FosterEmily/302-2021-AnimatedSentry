@@ -30,6 +30,7 @@ Transform:
   m_Children:
   - {fileID: 3020546757464827693}
   - {fileID: 6452068613634906595}
+  - {fileID: 1591811573814737419}
   m_Father: {fileID: 2842459172554604033}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
@@ -78,6 +79,7 @@ Transform:
   m_Children:
   - {fileID: 7018590958284557553}
   - {fileID: 7018590958540573695}
+  - {fileID: 6078367439342689320}
   m_Father: {fileID: 2842459172554604033}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
@@ -336,6 +338,36 @@ Transform:
   m_Father: {fileID: 7018590956980471612}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6422140549863731213
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6078367439342689320}
+  m_Layer: 0
+  m_Name: BONE Right HAnd
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6078367439342689320
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6422140549863731213}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -0.027999997, y: 0.01621759, z: 0.67669547}
+  m_LocalScale: {x: 0.108815, y: 0.3140361, z: 0.22215837}
+  m_Children: []
+  m_Father: {fileID: 8524518346140466699}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6473289486033893121
 GameObject:
   m_ObjectHideFlags: 0
@@ -386,6 +418,36 @@ MonoBehaviour:
   lockRotationX: 1
   lockRotationY: 0
   lockRotationZ: 1
+--- !u!1 &6622466840284912172
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1591811573814737419}
+  m_Layer: 0
+  m_Name: BONE left HAnd (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1591811573814737419
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6622466840284912172}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -0.092, y: 0.01621759, z: 0.6766956}
+  m_LocalScale: {x: 0.108815, y: 0.31403607, z: 0.22215837}
+  m_Children: []
+  m_Father: {fileID: 5112397465020398106}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7018590956978251544
 GameObject:
   m_ObjectHideFlags: 0
@@ -479,6 +541,7 @@ GameObject:
   - component: {fileID: 7018590956980471613}
   - component: {fileID: 7670687409360750991}
   - component: {fileID: 8083429190265917216}
+  - component: {fileID: 6734895145166098122}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -538,8 +601,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   wantsToTarget: 0
+  wantsToAttack: 0
   visionDis: 10
   visionAngle: 45
+  roundsPerSecond: 10
+  armL: {fileID: 5112397465020398106}
+  armR: {fileID: 8524518346140466699}
+  prefabMuzzelFlash: {fileID: 9069866693497976517, guid: 2c7e2a39afefc7648b6a7ea2bd120656, type: 3}
+  handR: {fileID: 6078367439342689320}
+  handL: {fileID: 1591811573814737419}
 --- !u!114 &8083429190265917216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -553,8 +623,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkSpeed: 4
+  gravity: 10
+  jumpImpulse: 5
   leg1: {fileID: 2230914186136701089}
   leg2: {fileID: 7018590958463483428}
+--- !u!114 &6734895145166098122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7018590956980471554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53a8150519924c647a31f99adfc58358, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthMax: 100
 --- !u!1 &7018590957200250423
 GameObject:
   m_ObjectHideFlags: 0

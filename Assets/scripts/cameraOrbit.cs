@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class cameraOrbit : MonoBehaviour
 {
     public PlayerMovement moveScript;
@@ -15,6 +16,8 @@ public class cameraOrbit : MonoBehaviour
 
     public float cameraSenX = 10;
     public float cameraSenY = 10;
+
+    public float shakeIntesity = 0;
 
     void Start()
     {
@@ -34,9 +37,28 @@ public class cameraOrbit : MonoBehaviour
         RotateCamToLookAtTarget();
         //"zoom" in the camera
         ZoomCamera();
+        ShackCamera();
 
     }
 
+
+    public void Shake(float intesity = 1)
+    { 
+            shakeIntesity = intesity;
+    }
+    private void ShackCamera()
+    {
+        if (shakeIntesity < 0) shakeIntesity = 0;
+
+        if (shakeIntesity > 0) shakeIntesity -= Time.deltaTime;
+        else return;// sake is 0 so do nothing
+
+
+        Quaternion targetRot = AnimMath.Lerp(Random.rotation, Quaternion.identity, .999f);
+
+        //cam.transform.localRotation *= targetRot ;
+        cam.transform.localRotation = AnimMath.Lerp(cam.transform.localRotation, cam.transform.localRotation * targetRot, shakeIntesity * shakeIntesity);
+    }
 
     private void ZoomCamera()
     {
