@@ -90,7 +90,7 @@ public class PlayerTargeting : MonoBehaviour
             targetHealth.TakeDamage(20);
         }
 
-        coolDownShoot = 1 / roundsPerSecond;
+        coolDownShoot = 3 / roundsPerSecond;
 
         //attack!!!
 

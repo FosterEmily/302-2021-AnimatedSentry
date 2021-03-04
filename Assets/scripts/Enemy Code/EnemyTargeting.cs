@@ -9,7 +9,7 @@ public class EnemyTargeting : MonoBehaviour
     public float visionDis = 3;
     public float visionAngle = 5;
 
-    //public bool inSight = false;
+    public bool inSight = false;
 
     float coolDownScan = 0;
     float coolDownTarget = 0;
@@ -38,10 +38,10 @@ public class EnemyTargeting : MonoBehaviour
     private void ScanForTargets()
     {
 
-        coolDownScan = 2;
+        coolDownScan = .5f;
 
        potentialTargets.Clear();
-        
+        inSight = false;
 
         EnemyTargets[] things = GameObject.FindObjectsOfType<EnemyTargets>();
 
@@ -52,6 +52,8 @@ public class EnemyTargeting : MonoBehaviour
                 potentialTargets.Add(thing);
                 
                 print("Can see player");
+
+                inSight = true;
 
                
             }
