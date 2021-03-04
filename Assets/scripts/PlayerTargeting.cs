@@ -95,7 +95,7 @@ public class PlayerTargeting : MonoBehaviour
         //attack!!!
 
 
-        camOrbit.Shake(1);
+        //camOrbit.Shake(1);
 
         if (handL) Instantiate(prefabMuzzelFlash, handL.position, handL.rotation);
         if (handR) Instantiate(prefabMuzzelFlash, handR.position, handR.rotation);
