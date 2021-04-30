@@ -5,15 +5,21 @@ using UnityEngine;
 public class HealthSystem : MonoBehaviour
 {
 
-    public float health { get; private set; }
+
+    public static float health { get; private set; }
 
     public float healthMax = 100;
 
     private void Start()
     {
         health = healthMax;
-    }
+        
 
+    }
+    void Update()
+    {
+ 
+    }
     public void TakeDamage(float amt)
     {
         if (amt <= 0) return;
@@ -29,4 +35,5 @@ public class HealthSystem : MonoBehaviour
     {
         Destroy(gameObject);
     }
+
 }

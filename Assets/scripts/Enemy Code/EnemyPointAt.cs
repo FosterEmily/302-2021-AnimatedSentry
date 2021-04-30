@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyPointAt : MonoBehaviour
 {
-
+    private EnemyController enemyController;
     // public Transform target;
     private EnemyTargeting enemy;
 
@@ -17,6 +17,7 @@ public class EnemyPointAt : MonoBehaviour
     void Start()
     {
         startingRotation = transform.localRotation;
+        enemyController = GetComponentInParent<EnemyController>();
         enemy = GetComponentInParent<EnemyTargeting>();
     }
 
@@ -29,9 +30,9 @@ public class EnemyPointAt : MonoBehaviour
     private void TurnTowardsTheTarget()
     {
 
-        if (enemy && enemy.target )
+        if (enemyController.myTarget != null)
         {
-            Vector3 disToTarget = enemy.target.position - transform.position;
+            Vector3 disToTarget = enemyController.myTarget.position - transform.position;
 
             Quaternion targetRotation = Quaternion.LookRotation(disToTarget, Vector3.up);
 

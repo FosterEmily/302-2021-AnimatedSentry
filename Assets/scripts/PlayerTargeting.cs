@@ -84,11 +84,8 @@ public class PlayerTargeting : MonoBehaviour
         if (!CanSeeThing(target)) return;
 
         print("Pew Pew");
-        HealthSystem targetHealth = target.GetComponent<HealthSystem>();
-        if (targetHealth)
-        {
-            targetHealth.TakeDamage(20);
-        }
+        EnemyController.health -= 25;
+       
 
         coolDownShoot = 3 / roundsPerSecond;
 

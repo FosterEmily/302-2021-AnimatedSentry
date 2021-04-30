@@ -18,6 +18,9 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector3 inputDirection = new Vector3();
 
+    public static float health { get; set; }
+    public float healthMax = 100;
+
     private float timeLeftGrounded = 0;
     public bool isGrounded
     {
@@ -32,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-
+        health = healthMax;
         cam = Camera.main;
         pawn = GetComponent<CharacterController>();
     }
